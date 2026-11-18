@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OPA Business Command Center — Chiến Lược & Kế Hoạch Thực Thi Toàn Diện</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    :root {
+      --background: #081226;
+      --card: #0E1C36;
+      --secondary: #142647;
+      --foreground: #F8FAFC;
+      --muted-foreground: #94A3B8;
+      --border: #1E3660;
+      --primary: #1B6EF3;
+      --primary-foreground: #FFFFFF;
+    }
+
+    @keyframes floatIdle {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    @keyframes hornPulse {
+      0%, 100% { filter: drop-shadow(0 0 2px rgba(27, 110, 243, 0.4)); }
+      50% { filter: drop-shadow(0 0 10px rgba(77, 196, 255, 0.9)); }
+    }
+    .mascot-float { animation: floatIdle 3.2s ease-in-out infinite; }
+    .horn-glow { animation: hornPulse 2.4s ease-in-out infinite; }
+    .tab-active {
+      background-color: var(--primary);
+      color: var(--primary-foreground);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-4 md:p-6">
+
+  <!-- TOP VERCEL-STYLE HEADER BAR -->
+  <header class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-4 md:p-5 mb-6 shadow-sm">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <!-- Animated OPA Bull SVG Mascot -->
+        <div class="w-14 h-14 rounded-2xl bg-[var(--secondary)] border border-[var(--border)] flex items-center justify-center shrink-0 mascot-float horn-glow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000" class="w-10 h-10">
+            <g fill="#1B6EF3">
+              <path d="M 877.25 814.86 L 658.32 814.86 L 480 987.27 L 480 1235.56 A 397.24 397.24 0 0 0 877.25 1632.8 L 1122.76 1632.8 A 397.24 397.24 0 0 0 1520 1235.56 L 1520 987.27 L 1341.68 814.86 L 1122.76 814.86 L 1122.76 937.62 A 198.62 198.62 0 0 1 1321.38 1136.24 L 1321.38 1235.56 A 198.62 198.62 0 0 1 1122.76 1434.18 L 877.25 1434.18 A 198.62 198.62 0 0 1 678.62 1235.56 L 678.62 1136.24 A 198.62 198.62 0 0 1 877.25 937.62 Z"/>
+              <path fill="#4DC4FF" d="M 658.32 814.86 C 551.92 814.86 338.18 604.44 439.79 407.48 L 349.62 367.33 C 265.83 524.18 300.58 861.43 480 987.27 L 504 1090 L 660 1030 L 760 890 Z"/>
+              <path fill="#4DC4FF" d="M 1341.68 814.86 C 1448.08 814.86 1661.82 604.44 1560.21 407.48 L 1650.38 367.33 C 1734.17 524.18 1699.42 861.43 1520 987.27 L 1496 1090 L 1340 1030 L 1240 890 Z"/>
+            </g>
+          </svg>
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-500 border border-emerald-500/30">
+              ● PRODUCTION READY · MST: 0111435207
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-[var(--secondary)] text-[var(--muted-foreground)] border border-[var(--border)]">
+              Ocean Park 2 (CX10-111 Cọ Xanh)
+            </span>
+          </div>
+          <h1 class="text-xl md:text-2xl font-bold tracking-tight mt-1">
+            CÔNG TY TNHH OVERPOWERS AGENCY (OPA) — COMMAND CENTER
+          </h1>
+          <p class="text-xs md:text-sm text-[var(--muted-foreground)]">
+            Hệ sinh thái Thực thi Doanh thu & Media Có Chủ Đích bằng AI cho SME: <strong class="text-[var(--foreground)]">Đủ Video Bán Hàng – Không Bỏ Sót Khách – Đội Ngũ Tự Vận Hành</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick KPI Badges -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 shrink-0">
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Tam Giác Kênh</div>
+          <div class="text-base font-bold text-sky-500">338.000+ FLW</div>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Đội Ngũ Nòng Cốt</div>
+          <div class="text-base font-bold text-emerald-500">10 Chính + 2 HV</div>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Nền Tảng Tự Xây</div>
+          <div class="text-base font-bold text-amber-500">5 SaaS + 146 Skills</div>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl px-3 py-2">
+          <div class="text-xs text-[var(--muted-foreground)]">Mục Tiêu Tháng 3</div>
+          <div class="text-base font-bold text-rose-500">~994.4 Triệu/th</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERCEL NAVIGATION TABS -->
+    <nav class="flex flex-wrap gap-2 mt-5 pt-4 border-t border-[var(--border)]" id="main-tabs">
+      <button onclick="switchTab('tab-flywheel')" id="btn-tab-flywheel" class="tab-btn tab-active px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        1. Flywheel 4 Tầng & 4 Đòn Bẩy
+      </button>
+      <button onclick="switchTab('tab-pipelines')" id="btn-tab-pipelines" class="tab-btn bg-[var(--secondary)] text-[var(--foreground)] px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        2. 3 Đường Ống Bán Hàng & Máy Tính Audit
+      </button>
+      <button onclick="switchTab('tab-channels')" id="btn-tab-channels" class="tab-btn bg-[var(--secondary)] text-[var(--foreground)] px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        3. Tam Giác 338K+ FLW & Auto-Inbox
+      </button>
+      <button onclick="switchTab('tab-team')" id="btn-tab-team" class="tab-btn bg-[var(--secondary)] text-[var(--foreground)] px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        4. Phân Nhiệm 10+2 Nhân Sự OPA
+      </button>
+      <button onclick="switchTab('tab-roadmap')" id="btn-tab-roadmap" class="tab-btn bg-[var(--secondary)] text-[var(--foreground)] px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        5. Mô Phỏng Doanh Thu & Lộ Trình 90 Ngày
+      </button>
+      <button onclick="switchTab('tab-vs')" id="btn-tab-vs" class="tab-btn bg-[var(--secondary)] text-[var(--foreground)] px-3.5 py-2 rounded-lg text-xs md:text-sm transition-all">
+        6. Đối Chiếu MagentX vs OPA
+      </button>
+    </nav>
+  </header>
+
+  <!-- ==================== TAB 1: FLYWHEEL 4 TẦNG & 4 ĐÒN BẨY ==================== -->
+  <section id="tab-flywheel" class="tab-pane space-y-6">
+    <!-- Strategic Positioning Banner -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-sky-500">Chiến Lược Thắng Thế Bất Đối Xứng</span>
+          <h2 class="text-lg md:text-xl font-bold mt-0.5">Kiến Trúc Hệ Sinh Thái Sản Phẩm 4 Tầng Tự Chủ Của OPA</h2>
+          <p class="text-xs md:text-sm text-[var(--muted-foreground)] mt-1">
+            MagentX dừng lại ở việc dạy dùng công cụ ngoại để tạo ảnh/video đẹp. OPA sở hữu <strong>5 nền tảng SaaS riêng</strong> khép kín từ tạo Video bán hàng &rarr; Trực Inbox check bill 24/7 &rarr; Đẩy đơn Pancake POS &rarr; Quản trị CRM.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-sky-500/15 text-sky-500 border border-sky-500/30">
+            Track Record: Oniiz 3.000+ đơn/ngày
+          </span>
+          <span class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-500/15 text-amber-500 border border-amber-500/30">
+            640⭐ GitHub (146 AI Skills)
+          </span>
+        </div>
+      </div>
+
+      <!-- 4 Interactive Tier Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <!-- Tier 4: Free Assets -->
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-500">TẦNG 4 · ĐẦU PHỄU 0Đ</span>
+              <span class="text-xs font-mono text-[var(--muted-foreground)]">opa.business</span>
+            </div>
+            <h3 class="font-bold text-base mb-2">Tài Nguyên Mở & Cộng Đồng Thu Hút</h3>
+            <ul class="space-y-2 text-xs text-[var(--muted-foreground)]">
+              <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">✦</span><span><strong class="text-[var(--foreground)]">Media Super Powers:</strong> 150 kỹ thuật góc máy, ánh sáng & prompt (<code>/media-super-powers</code>).</span></li>
+              <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">✦</span><span><strong class="text-[var(--foreground)]">Nano Power Prompts:</strong> 83+ Curated Prompts mở khóa 12.500+ Prompts (<code>/nano-power</code>).</span></li>
+              <li class="flex items-start gap-2"><span class="text-emerald-500 font-bold">✦</span><span><strong class="text-[var(--foreground)]">Repo 146 AI Skills:</strong> 640 sao GitHub + 43 bài Blog + Cộng đồng <strong>Zero To AI (Skool)</strong>.</span></li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs flex items-center justify-between">
+            <span class="text-[var(--muted-foreground)]">Mồi câu:</span>
+            <span class="font-mono font-semibold text-emerald-500">KIT · PROMPT · DETOX</span>
+          </div>
+        </div>
+
+        <!-- Tier 1: 5 Self-Built SaaS -->
+        <div class="bg-[var(--secondary)] border-2 border-sky-500/40 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-sky-500/20 text-sky-500">TẦNG 1 · 5 SAAS TỰ XÂY</span>
+              <span class="text-xs font-mono text-sky-500 font-bold">199K – 990K</span>
+            </div>
+            <h3 class="font-bold text-base mb-2">Vũ Khí Công Nghệ & Doanh Thu MRR</h3>
+            <ul class="space-y-2 text-xs text-[var(--muted-foreground)]">
+              <li class="flex items-start gap-2"><span class="text-sky-500 font-bold">1.</span><span><strong class="text-[var(--foreground)]">Xưởng Media (xuongmedia.com):</strong> 36+ Apps, 59+ Models, 15.000+ Prompts, Batch Workflow. Nạp QR: <strong>199K / 399K / 990K</strong>.</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 font-bold">2.</span><span><strong class="text-[var(--foreground)]">OPA Agent (chat.overpowers.agency):</strong> Trực Page 24/7, <strong>tự check bill CK</strong>, đẩy đơn Pancake POS, nhường nhân viên thật.</span></li>
+              <li class="flex items-start gap-2"><span class="text-sky-500 font-bold">3.</span><span><strong class="text-[var(--foreground)]">OPA CRM + Creative OS + Data API:</strong> Quản trị Lead/Sales + 16 Agent Hermes + FilmCraft v2.14.</span></li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs flex items-center justify-between">
+            <span class="text-[var(--muted-foreground)]">Đòn bẩy:</span>
+            <span class="font-semibold text-sky-500">Khấu trừ 100% lên Khóa 8.88M</span>
+          </div>
+        </div>
+
+        <!-- Tier 2: B2B SME Services -->
+        <div class="bg-[var(--secondary)] border-2 border-amber-500/40 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-amber-500/20 text-amber-500">TẦNG 2 · DỊCH VỤ B2B SME</span>
+              <span class="text-xs font-mono text-amber-500 font-bold">4M – 9M+/tháng</span>
+            </div>
+            <h3 class="font-bold text-base mb-2">Chẩn Đoán & Vận Hành Trọn Gói</h3>
+            <ul class="space-y-2 text-xs text-[var(--muted-foreground)]">
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">★</span><span><strong class="text-[var(--foreground)]">Mồi B2B — AI Audit 5 Ngày:</strong> Đo 3 chỉ số lọt khách thật trên Fanpage + Xuất <strong>Báo cáo 1 trang A4</strong> (Bùi Anh Phương chủ trì).</span></li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">★</span><span><strong class="text-[var(--foreground)]">Triển khai OPA Agent + CRM + AI Ops Care:</strong> Chặn đứng rớt khách sau 21h đêm, báo cáo định kỳ.</span></li>
+              <li class="flex items-start gap-2"><span class="text-amber-500 font-bold">★</span><span><strong class="text-[var(--foreground)]">Vận hành Fanpage & Media:</strong> Gói Basic (<strong>4M</strong>) · Plus (<strong>6M</strong>) · Premium (<strong>9M/tháng</strong>) + Video Ads.</span></li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs flex items-center justify-between">
+            <span class="text-[var(--muted-foreground)]">Mồi câu B2B:</span>
+            <span class="font-mono font-semibold text-amber-500">AUDIT · AGENT · CRM</span>
+          </div>
+        </div>
+
+        <!-- Tier 3: OPA AI Labs Academy -->
+        <div class="bg-[var(--secondary)] border-2 border-rose-500/40 rounded-xl p-4 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-rose-500/20 text-rose-500">TẦNG 3 · OPA AI LABS</span>
+              <span class="text-xs font-mono text-rose-500 font-bold">8.88M – 30M</span>
+            </div>
+            <h3 class="font-bold text-base mb-2">Đào Tạo Thực Chiến & Coaching DN</h3>
+            <ul class="space-y-2 text-xs text-[var(--muted-foreground)]">
+              <li class="flex items-start gap-2"><span class="text-rose-500 font-bold">1.</span><span><strong class="text-[var(--foreground)]">Track 1 — Media Power-Up (8.888.888đ):</strong> 5 buổi + 4 tuần review 1-1 cùng CD Võ Viết Thành (Xưởng Video AI).</span></li>
+              <li class="flex items-start gap-2"><span class="text-rose-500 font-bold">2.</span><span><strong class="text-[var(--foreground)]">Track 2 — Vibecode Pro (8.888.888đ):</strong> 6 buổi + 4 tuần code review (60 AI Skills & phòng MKT bằng Agent).</span></li>
+              <li class="flex items-start gap-2"><span class="text-rose-500 font-bold">3.</span><span><strong class="text-[var(--foreground)]">Gói Chim Mồi B2B — Coaching DN (30.000.000đ):</strong> 3 nhân sự học Full 2 Track + <strong>CEO Nguyễn Văn Minh kèm 1-1 8 tuần</strong> (Xuất VAT).</span></li>
+            </ul>
+          </div>
+          <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs flex items-center justify-between">
+            <span class="text-[var(--muted-foreground)]">Đòn bẩy giá:</span>
+            <span class="font-semibold text-rose-500">Tiết kiệm 44% so với mua lẻ 3 người</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Strategic Levers Converted from MagentX -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <h3 class="text-base md:text-lg font-bold mb-3">4 Đòn Bẩy Chuyển Hóa Trực Tiếp Từ MagentX Sang Cơ Chế Thực Thi Của OPA</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div class="text-xs font-semibold text-sky-500 mb-1">ĐÒN BẨY 1 · TỪ SKILLBANK &rarr; CHỢ WORKFLOW XƯỞNG MEDIA</div>
+          <div class="font-bold text-sm mb-1">Mở Kho Workflow Kéo Thả Ghi Danh Tác Giả Trên xuongmedia.com</div>
+          <p class="text-xs text-[var(--muted-foreground)]">
+            Mỗi tuần <strong>Nguyễn Thiên Duy, Phạm Hoàng Hải & Võ Viết Thành</strong> đăng 5 Workflow Batch mẫu lên <code>xuongmedia.com</code>. Học viên <code>OPA AI Labs</code> nộp bài tốt nghiệp được gắn tên tác giả và nhận thưởng xu khi có người dùng lại workflow.
+          </p>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div class="text-xs font-semibold text-emerald-500 mb-1">ĐÒN BẨY 2 · TỪ LEVEL 1 (599K) &rarr; NẠP XU KHẤU TRỪ 100% + GIÁ CHIM MỒI 30M</div>
+          <div class="font-bold text-sm mb-1">Biến Gói Nạp Xu (199K–990K) Thành "Tài Khoản Tiết Kiệm Chờ Nâng Cấp"</div>
+          <p class="text-xs text-[var(--muted-foreground)]">
+            Khách nạp xu <code>Xưởng Media</code> được <strong>khấu trừ 100% số tiền đã nạp</strong> khi đăng ký <code>Media Power-Up (8.88M)</code> hoặc <code>Vibecode Pro (8.88M)</code> trong 7 ngày. Với doanh nghiệp: mua lẻ 3 người học Full 2 Track tốn <code>53.3M</code> &rarr; Đặt gói <strong>Coaching DN 3 người ở mức 30M</strong> để chốt nhanh CEO!
+          </p>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div class="text-xs font-semibold text-amber-500 mb-1">ĐÒN BẨY 3 · TỪ DONATE BOOTCAMP &rarr; OPA SME AI BOOTCAMP (2 TUẦN/LẦN)</div>
+          <div class="font-bold text-sm mb-1">Chẩn Đoán Trực Tiếp Tại Khán Phòng & Chốt Nóng Hợp Đồng Năm</div>
+          <p class="text-xs text-[var(--muted-foreground)]">
+            <strong>Trần Quang Huy & CEO Nguyễn Văn Minh</strong> mời 15–20 chủ DN SME/BNI tham dự mỗi 2 tuần. Tại chỗ: <strong>Bùi Anh Phương</strong> đo trực tiếp số tin nhắn Fanpage bị bỏ sót + <strong>CD Võ Viết Thành</strong> dựng 18 tracks trong 15 phút &rarr; Chốt nóng <code>AI Audit 5 Ngày</code>, <code>OPA Agent/CRM</code> và <code>Coaching 30M</code>.
+          </p>
+        </div>
+        <div class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div class="text-xs font-semibold text-rose-500 mb-1">ĐÒN BẨY 4 · TỪ 5 KÊNH VỆ TINH &rarr; TAM GIÁC 338K + VLOG OCEAN PARK 2</div>
+          <div class="font-bold text-sm mb-1">Khen Chéo Nội Bộ (Cross-Praise) Hạ Rào Cản Phòng Vệ Quảng Cáo</div>
+          <p class="text-xs text-[var(--muted-foreground)]">
+            Kết hợp 3 đỉnh (<code>Fanpage 311K</code> &times; <code>VM DaBest 27K</code> &times; <code>Thành OPA Skool</code>) với chuỗi Vlog hậu trường của <strong>Phạm Đức Cường & 2 Học việc</strong> (học công thức <em>CHĂM ở MagentX</em> 550K views): nhân viên kể chuyện sếp Minh và anh Phương cứu Fanpage khách rơi 40 triệu/tháng.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: 3 ĐƯỜNG ỐNG BÁN HÀNG & MÁY TÍNH AI AUDIT ==================== -->
+  <section id="tab-pipelines" class="tab-pane hidden space-y-6">
+    <!-- 3 Pipelines Step-by-Step -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <!-- Pipeline 1 -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-amber-500/20 text-amber-500">ĐƯỜNG ỐNG 1 · B2B SME</span>
+          <span class="text-xs text-[var(--muted-foreground)]">Huy + Phương + CEO Minh</span>
+        </div>
+        <h3 class="font-bold text-base mb-3">Từ "AI Audit 5 Ngày" &rarr; Hợp Đồng "OPA Agent + CRM"</h3>
+        <ol class="space-y-3 text-xs">
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-amber-500">Bước 1 (Ngày 0): Bắt Lead Tự Động</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Chủ DN xem bài Case Study Oniiz / bài bắt bệnh lọt khách trên <code>VM DaBest</code> & <code>OPA Page</code> &rarr; Comment <code>AUDIT</code> &rarr; <code>OPA Agent</code> thu SĐT Zalo & Fanpage trong 5 giây.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-amber-500">Bước 2 (Ngày 1–3): Đo 3 Chỉ Số Sống Còn</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5"><strong>Bùi Anh Phương</strong> cắm công cụ đo dữ liệu thật trên Fanpage khách: (1) Số tin nhắn chưa trả lời, (2) Thời gian phản hồi theo phút, (3) Số khách chưa gọi lại.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-amber-500">Bước 3 (Ngày 4–5): Họp Zoom 30p Chốt Giải Pháp</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5"><strong>Trần Quang Huy</strong> trình bày <em>Báo cáo AI Audit 1 trang A4</em> chỉ rõ số tiền rò rỉ mỗi tháng &rarr; Chốt triển khai <code>OPA Agent</code> (check bill CK, đẩy Pancake POS) + <code>OPA CRM</code>.</div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Pipeline 2 -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-sky-500/20 text-sky-500">ĐƯỜNG ỐNG 2 · SAAS & LABS</span>
+          <span class="text-xs text-[var(--muted-foreground)]">Thành + Ánh + Quang</span>
+        </div>
+        <h3 class="font-bold text-base mb-3">Từ "Xưởng Media (199K–990K)" &rarr; "OPA AI Labs (8.88M)"</h3>
+        <ol class="space-y-3 text-xs">
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-sky-500">Bước 1: Trao Vũ Khí Mở & Nạp Xu QR VNĐ</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Khách xem video <code>Before/After</code> trên kênh <code>@thanhdungai</code> &rarr; Comment <code>KIT</code> / <code>PROMPT</code> &rarr; Nhận 150 kỹ thuật góc máy + Nạp gói <strong>Starter 199K / Pro 399K / Business 990K</strong> trên <code>xuongmedia.com</code>.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-sky-500">Bước 2: Live Critique Tối Thứ Sáu Hàng Tuần</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5"><strong>CD Võ Viết Thành & CEO Nguyễn Văn Minh</strong> chữa bài trực tiếp 60 phút cho người dùng <code>Xưởng Media</code> & cộng đồng <code>Zero To AI (Skool)</code>.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-sky-500">Bước 3: Khấu Trừ 100% Học Phí Lên 8.88M / 30M</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Tung mã khấu trừ 100% tiền nạp xu khi đăng ký <code>Track 1: Media Power-Up (8.88M)</code>, <code>Track 2: Vibecode Pro (8.88M)</code> hoặc <code>Coaching DN (30M/3 người)</code>.</div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Pipeline 3 -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-500">ĐƯỜNG ỐNG 3 · MEDIA RETAINER</span>
+          <span class="text-xs text-[var(--muted-foreground)]">Ánh + Thành + Cường + 2 HV</span>
+        </div>
+        <h3 class="font-bold text-base mb-3">Vận Hành Fanpage & Media Có Chủ Đích (4M–9M/tháng)</h3>
+        <ol class="space-y-3 text-xs">
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-emerald-500">Gói Facebook Basic (4.000.000đ/tháng)</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Chuẩn hóa toàn bộ nhận diện Fanpage (Cover 4 tầng, Bio, Bài ghim) + Tuyến bài chuyển đổi cơ bản + Cắm <code>OPA Agent</code> trực phản hồi 24/7.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-emerald-500">Gói Facebook Plus (6.000.000đ/tháng)</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Tuyến bài Storytelling 6 tầng + Thiết kế Carousel Bento Grid + Chuỗi Reels ngắn + Hệ thống Auto-Inbox thu Lead theo từ khóa.</div>
+          </li>
+          <li class="p-3 rounded-xl bg-[var(--secondary)] border border-[var(--border)]">
+            <div class="font-bold text-emerald-500">Gói Facebook Premium (9.000.000đ/tháng)</div>
+            <div class="text-[var(--muted-foreground)] mt-0.5">Vận hành toàn diện Fanpage + Sản xuất chuỗi Video ngắn <strong>"Dựng Có Chủ Đích" (18 tracks FilmCraft)</strong> + Đồng bộ phễu bán hàng về <code>OPA CRM</code>.</div>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Interactive 5-Day AI Audit Calculator (1-Page A4 Preview) -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+        <div>
+          <span class="text-xs font-semibold uppercase text-amber-500">Công Cụ Chốt Sales B2B Dành Cho Bùi Anh Phương & Trần Quang Huy</span>
+          <h3 class="text-lg font-bold">Trình Mô Phỏng "Báo Cáo AI Audit 5 Ngày (1 Trang A4)"</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">Kéo thanh trượt theo 3 chỉ số đo thực tế trên Fanpage khách hàng để quy đổi ngay ra <strong>Số Tiền Doanh Nghiệp Đang Đánh Rơi Mỗi Tháng</strong>.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7 space-y-4 bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>1. Số tin nhắn chưa trả lời / trả lời trễ sau 21h đêm (tin/tháng):</span>
+              <span id="audit-unanswered-val" class="font-mono text-amber-500 font-bold">350 tin</span>
+            </div>
+            <input type="range" id="audit-unanswered" min="50" max="1500" step="25" value="350" oninput="calcAudit()" class="w-full accent-amber-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>2. Thời gian phản hồi trung bình hiện tại (phút):</span>
+              <span id="audit-delay-val" class="font-mono text-rose-500 font-bold">42 phút</span>
+            </div>
+            <input type="range" id="audit-delay" min="5" max="180" step="1" value="42" oninput="calcAudit()" class="w-full accent-rose-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>3. Số khách đã xin giá/để SĐT nhưng chưa được gọi lại lần 2 (khách/tháng):</span>
+              <span id="audit-nofollow-val" class="font-mono text-sky-500 font-bold">180 khách</span>
+            </div>
+            <input type="range" id="audit-nofollow" min="20" max="1000" step="10" value="180" oninput="calcAudit()" class="w-full accent-sky-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>4. Giá trị đơn hàng trung bình của khách (VNĐ/đơn):</span>
+              <span id="audit-aov-val" class="font-mono text-emerald-500 font-bold">500.000đ</span>
+            </div>
+            <input type="range" id="audit-aov" min="150000" max="5000000" step="50000" value="500000" oninput="calcAudit()" class="w-full accent-emerald-500" />
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-[var(--secondary)] border-2 border-rose-500/40 rounded-xl p-5 space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-rose-500">KẾT QUẢ CHẨN ĐOÁN RÒ RỈ DOANH THU (TRANG A4)</div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+              <div class="text-xs text-[var(--muted-foreground)]">Đơn hàng rơi rụng ước tính</div>
+              <div id="audit-lost-orders" class="text-lg font-bold text-amber-500 mt-0.5">79 đơn/tháng</div>
+            </div>
+            <div class="p-3 rounded-lg bg-[var(--card)] border border-[var(--border)]">
+              <div class="text-xs text-[var(--muted-foreground)]">Tốc độ khi cắm OPA Agent</div>
+              <div class="text-lg font-bold text-emerald-500 mt-0.5">3 giây (24/7)</div>
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30">
+            <div class="text-xs text-[var(--muted-foreground)]">Tổng Doanh Thu Đang Đánh Rơi Mỗi Tháng:</div>
+            <div id="audit-lost-rev" class="text-2xl font-extrabold text-rose-500 mt-1">39.750.000 VNĐ / tháng</div>
+            <div id="audit-lost-year" class="text-xs text-[var(--muted-foreground)] mt-1">Tương đương mất trắng ~477.000.000 VNĐ / năm nếu không bịt lỗ hổng.</div>
+          </div>
+          <div class="text-xs text-emerald-500 font-semibold">
+            &rarr; Đề xuất chốt ngay: Cắm OPA Agent (check bill CK + đẩy Pancake POS) + OPA CRM + Gói Fanpage Plus (6M/tháng).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: TAM GIÁC TĂNG TRƯỞNG 338K+ FLW & AUTO-INBOX ==================== -->
+  <section id="tab-channels" class="tab-pane hidden space-y-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+      <!-- Channel 1: Fanpage Overpowers Agency -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-sky-500/20 text-sky-500">ĐỈNH 1 · 311.000 FOLLOWERS</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">CMO Ngọc Ánh</span>
+          </div>
+          <h3 class="text-base font-bold">Fanpage: Overpowers Agency</h3>
+          <p class="text-xs text-sky-500 font-semibold mb-3">Vai trò: The Proof & Solution Hub (Trung tâm Giải pháp & Bảo chứng)</p>
+          <div class="space-y-2 text-xs text-[var(--muted-foreground)]">
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>35% Demo Sản phẩm tự xây:</strong> Quay màn hình <code>OPA Agent</code> tự check bill chuyển khoản, đẩy đơn Pancake POS & nhường nhân viên; chạy Batch trên <code>xuongmedia.com</code>.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>30% Case Study B2B & AI Audit:</strong> Bóc tách vận hành <strong>Oniiz 3.000+ đơn/ngày</strong> và các báo cáo <code>AI Audit 5 Ngày</code> thật.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>20% Showcase Dựng Có Chủ Đích:</strong> Split-screen <code>Output vs Input</code>.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>15% Tuyển sinh OPA AI Labs (8.88M) & Bootcamp.</strong></div>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs">
+          <div class="font-semibold text-rose-500">Kỷ luật: Dừng 100% bài điểm tin API khô khan cũ.</div>
+          <div class="text-[var(--muted-foreground)] mt-0.5">Giờ vàng: <strong>12h00</strong> & <strong>20h30</strong> (6–7 bài/tuần).</div>
+        </div>
+      </div>
+
+      <!-- Channel 2: VM DaBest -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-amber-500/20 text-amber-500">ĐỈNH 2 · 27.000 FOLLOWERS</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">CEO Nguyễn Văn Minh</span>
+          </div>
+          <h3 class="text-base font-bold">Kênh Founder: VM DaBest</h3>
+          <p class="text-xs text-amber-500 font-semibold mb-3">Vai trò: The AI Business Architect & CEO Mentor</p>
+          <div class="space-y-2 text-xs text-[var(--muted-foreground)]">
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>40% Build-in-Public Hệ thống:</strong> Câu chuyện 6 tháng tự viết <code>OPA CRM</code>, điều phối <code>16 Agent Hermes Kanban</code> vận hành đội ngũ 10 anh em tại Ocean Park 2.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>35% Bắt bệnh Rò rỉ Doanh thu SME:</strong> Góc nhìn thực tế từ BNI FIPO & Techfest về bài toán chống lọt khách và bảo mật dữ liệu.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>25% Tư duy Vibecode & Coaching DN:</strong> Đúc kết từ <code>146 AI Marketing Skills (640⭐ GitHub)</code> và các ca kèm 1-1 gói <code>30M</code>.</div>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs">
+          <div class="font-semibold text-emerald-500">Khắc phục điểm nghẽn: 100% bài có CTA 3 dòng cuối bài!</div>
+          <div class="text-[var(--muted-foreground)] mt-0.5">Dẫn thẳng về: <strong>AI Audit 5 Ngày</strong> & <strong>Coaching DN 30M</strong>.</div>
+        </div>
+      </div>
+
+      <!-- Channel 3: Thành OPA Skool -->
+      <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-emerald-500/20 text-emerald-500">ĐỈNH 3 · @THANHDUNGAI</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">CD Võ Viết Thành</span>
+          </div>
+          <h3 class="text-base font-bold">Kênh CD Media: Thành OPA Skool</h3>
+          <p class="text-xs text-emerald-500 font-semibold mb-3">Vai trò: The AI Media Craftsman ("Dựng Có Chủ Đích")</p>
+          <div class="space-y-2 text-xs text-[var(--muted-foreground)]">
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>35% Giải cứu Video (Before/After):</strong> Sửa trực tiếp 3 giây đầu làm mất 80% người xem bằng quy chuẩn <code>MotionFX v2.14 (18 tracks, -16 LUFS)</code>.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>30% Đối chiếu Output vs Input:</strong> Đặt video thành phẩm cạnh 4 nguyên liệu đầu vào trên <code>xuongmedia.com</code> & <code>FilmCraft</code>.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>20% Nhật ký Rèn 2 Học việc Media:</strong> Hậu trường đào tạo nhân sự mới đi làm dự án thật tại OPA.</div>
+            <div class="p-2.5 rounded-lg bg-[var(--secondary)]"><strong>15% Quy trình "1h Quay = 20 Video Kéo Khách".</strong></div>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-[var(--border)] text-xs">
+          <div class="font-semibold text-sky-500">Kỷ luật: 0% Báo giá khô khan trên kênh cá nhân.</div>
+          <div class="text-[var(--muted-foreground)] mt-0.5">Dẫn về: <strong>Xưởng Media (199K–990K)</strong> & <strong>Track 1 (8.88M)</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Auto-Inbox Keyword Simulator -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <h3 class="text-base font-bold mb-1">Trình Mô Phỏng Kịch Bản Auto-Inbox 5 Giây Của OPA Agent (Comment-to-Messenger)</h3>
+      <p class="text-xs text-[var(--muted-foreground)] mb-4">Bấm vào từng Từ khóa CTA bên dưới để xem luồng phản hồi tự động trên Fanpage & cách chia khách về đúng người phụ trách trên <code>crm.overpowers.agency</code>:</p>
+      <div class="flex flex-wrap gap-2 mb-4">
+        <button onclick="showKeyword('AUDIT')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-amber-500/20 text-amber-500 border border-amber-500/30">Comment: "AUDIT"</button>
+        <button onclick="showKeyword('AGENT')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-sky-500/20 text-sky-500 border border-sky-500/30">Comment: "AGENT"</button>
+        <button onclick="showKeyword('KIT')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-emerald-500/20 text-emerald-500 border border-emerald-500/30">Comment: "KIT" / "PROMPT"</button>
+        <button onclick="showKeyword('XUONG')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-purple-500/20 text-purple-500 border border-purple-500/30">Comment: "XUONG"</button>
+        <button onclick="showKeyword('LABS')" class="px-3 py-1.5 rounded-lg text-xs font-mono font-bold bg-rose-500/20 text-rose-500 border border-rose-500/30">Comment: "LABS" / "COACHING"</button>
+      </div>
+      <div id="kw-preview" class="bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 text-xs space-y-2">
+        <div class="font-bold text-amber-500">Từ khóa kích hoạt: [AUDIT] (Mồi câu B2B Chiến lược)</div>
+        <div><strong>1. Trả lời Comment công khai (sau 3 giây):</strong> <em>"Trợ lý AI của OPA đã gửi biểu mẫu đăng ký gói Chẩn đoán AI Audit 5 Ngày (đo 3 chỉ số lọt khách thật trên Fanpage) vào Inbox cho anh/chị rồi ạ! Anh/chị kiểm tra tin nhắn nhé ⚡"</em></div>
+        <div><strong>2. Tin nhắn Inbox tự động (sau 5 giây):</strong> Gửi ảnh mẫu <em>Báo cáo AI Audit 1 Trang A4</em> + Hỏi đường link Fanpage & SĐT Zalo của Chủ doanh nghiệp.</div>
+        <div><strong>3. Chia giỏ tự động trên OPA CRM:</strong> Đẩy thẳng vào <strong>Giỏ B2B Audit</strong> &rarr; Gắn thẻ giao cho <strong>Bùi Anh Phương</strong> (đo số liệu) & <strong>Trần Quang Huy</strong> (lên lịch Zoom Ngày 5).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: PHÂN NHIỆM 10+2 NHÂN SỰ OPA ==================== -->
+  <section id="tab-team" class="tab-pane hidden space-y-6">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-lg font-bold">Sổ Tay Phân Nhiệm & KPI Cho 10 Nhân Sự Chính Thức + 2 Học Việc OPA</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">Lọc theo khối phòng ban để xem rõ đầu việc hàng tuần, điểm chạm phối hợp và KPI đo lường của từng cá nhân.</p>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="filterTeam('all')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--primary)] text-[var(--primary-foreground)]">Tất cả (12 người)</button>
+          <button onclick="filterTeam('clevel')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--secondary)] border border-[var(--border)]">Ban Điều Hành (3)</button>
+          <button onclick="filterTeam('media')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--secondary)] border border-[var(--border)]">Sáng Tạo & Media (4)</button>
+          <button onclick="filterTeam('tech')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--secondary)] border border-[var(--border)]">Công Nghệ & R&D (5)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4" id="team-grid">
+        <!-- 1. Nguyễn Văn Minh -->
+        <div data-dept="clevel" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-500">FOUNDER · CEO & CTO</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">VM DaBest (27K)</span>
+          </div>
+          <h3 class="font-bold text-base">1. Nguyễn Văn Minh</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Đăng 4–5 bài Build-in-Public/tuần trên FB <code>VM DaBest</code> (gắn CTA cố định về <code>AI Audit 5 Ngày</code> & <code>Coaching DN 30M</code>).<br>• Đứng lớp <strong>Track 2: Vibecode Pro (8.88M)</strong> & kèm 1-1 gói <strong>Coaching DN 30M (8 tuần)</strong>.<br>• Kiến trúc trưởng <code>OPA CRM</code> & <code>16 Agent Hermes Kanban</code>.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-amber-500">KPI: 15–25 Lead B2B/tháng · Chốt 2–5 gói Coaching 30M/tháng.</div>
+        </div>
+
+        <!-- 2. Trần Quang Huy -->
+        <div data-dept="clevel" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-500">CO-FOUNDER · B2B SALES</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">B2B Growth</span>
+          </div>
+          <h3 class="font-bold text-base">2. Trần Quang Huy</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Chủ trì họp Zoom 30p ở Ngày 5 trình bày <em>Báo cáo AI Audit 1 trang A4</em> để chốt hợp đồng <code>OPA Agent + CRM + Fanpage</code>.<br>• Tổ chức <strong>OPA SME AI Bootcamp</strong> (2 tuần/lần) chốt nóng hợp đồng năm.<br>• Phát triển mạng lưới đối tác B2B, hiệp hội doanh nghiệp.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-amber-500">KPI: 15–25 ca trình bày Audit/tháng · Tỷ lệ chốt &ge; 35–40%.</div>
+        </div>
+
+        <!-- 3. Trương Ngọc Ánh -->
+        <div data-dept="clevel" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-500">CMO · MARKETING LEAD</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">OPA Page (311K)</span>
+          </div>
+          <h3 class="font-bold text-base">3. Trương Ngọc Ánh</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Tổng chỉ huy nội dung & phễu chuyển đổi trên <strong>Fanpage Overpowers Agency (311K)</strong> (dừng 100% bài API khô khan).<br>• Chạy chiến dịch tuyển sinh <strong>OPA AI Labs (8.88M)</strong> & cơ chế khấu trừ 100% xu <code>Xưởng Media</code>.<br>• Quản lý chất lượng các gói <strong>Fanpage Retainer (4M–9M/tháng)</strong>.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-amber-500">KPI: 300–500+ Comment Keyword/tháng · 15–30+ HV khóa 8.88M.</div>
+        </div>
+
+        <!-- 4. Võ Viết Thành -->
+        <div data-dept="media" class="team-card bg-[var(--secondary)] border-2 border-emerald-500/40 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-500">CREATIVE DIRECTOR (CD)</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">@thanhdungai</span>
+          </div>
+          <h3 class="font-bold text-base">4. Võ Viết Thành (Thành OPA Skool)</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Vận hành kênh <code>@thanhdungai</code> & <code>thanh.opa.skool</code>: Giao đề bài 08h30, quay A-Roll 150% năng lượng 13h30, duyệt QA 8/8 lúc 16h30, bắn Voice 45s chốt khách.<br>• Giảng viên chính <strong>Track 1: Media Power-Up (8.888.888đ)</strong>.<br>• Chỉ đạo nghệ thuật phòng Media & kèm trực tiếp 2 Học việc.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-emerald-500">KPI: 25–35+ video 18 tracks/tháng · 100–300+ lượt nạp Xưởng Media.</div>
+        </div>
+
+        <!-- 5. Phạm Đức Cường -->
+        <div data-dept="media" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-500">SENIOR VIDEO & MOTION</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">High-Craft Studio</span>
+          </div>
+          <h3 class="font-bold text-base">5. Phạm Đức Cường</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Dựng các dự án Video Thương hiệu B2B độ khó cao, Hoạt hình 2D/3D (Linh vật Bò OPA, giải thích luồng SaaS) và Showreel công ty.<br>• Tạo bộ <strong>Master Template (.fcproj / AE / Remotion)</strong> chuẩn 24 hiệu ứng chữ cho 2 Học việc chạy hàng loạt.<br>• Phối hợp quay chuỗi Vlog hậu trường Ocean Park 2.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-emerald-500">KPI: 8–12 video High-Craft/Animation mỗi tháng · 2–4 Master Preset mới.</div>
+        </div>
+
+        <!-- 6. 2 Học việc Media -->
+        <div data-dept="media" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-emerald-500/20 text-emerald-500">2 HỌC VIỆC PHÒNG MEDIA</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">Junior 01 & 02</span>
+          </div>
+          <h3 class="font-bold text-base">6 & 7. Hai Nhân Sự Học Việc Media</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• <strong>Junior 01:</strong> Chạy <code>analyze_and_scaffold.py</code> tách cảnh, tạo B-Roll đồng nhất nhân vật trên <code>xuongmedia.com</code> & Google Flow, thiết kế ảnh Carousel Bento Grid.<br>• <strong>Junior 02:</strong> Chạy <code>master-video-edit v2.14</code> dựng 18 tracks trên FilmCraft, kiểm định <code>Audit 8/8</code>, xóa metadata & đăng đa kênh lúc 17h00.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-emerald-500">KPI: 1–2 video 18 tracks/ngày (&le;35p/clip) · Audit 8/8 lần đầu &ge;85%.</div>
+        </div>
+
+        <!-- 8. Bùi Anh Phương -->
+        <div data-dept="tech" class="team-card bg-[var(--secondary)] border-2 border-sky-500/40 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-sky-500/20 text-sky-500">AI AUDIT DELIVERY LEAD</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">B2B Deployment</span>
+          </div>
+          <h3 class="font-bold text-base">8. Bùi Anh Phương</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• <strong>Chủ trì giao hàng gói mồi "AI Audit 5 Ngày":</strong> Đo 3 chỉ số lọt khách thật trên Fanpage doanh nghiệp và xuất <em>Báo cáo AI Audit 1 trang A4</em> trong 72–96h.<br>• Trực tiếp cấu hình, tích hợp và bàn giao hệ thống <code>OPA Agent + OPA CRM + Pancake POS</code> cho khách hàng B2B.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-sky-500">KPI: 100% Báo cáo Audit giao đúng hạn · Triển khai 5–15+ hệ thống B2B/tháng.</div>
+        </div>
+
+        <!-- 9. Phan Quang Điện -->
+        <div data-dept="tech" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-sky-500/20 text-sky-500">MULTI-AGENT ENGINEER</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">OPA Agent & Hermes</span>
+          </div>
+          <h3 class="font-bold text-base">9. Phan Quang Điện</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Phát triển lõi <strong>OPA Agent (chat.overpowers.agency)</strong>: Tư vấn tồn kho, <strong>tự động đọc & đối soát ảnh bill chuyển khoản</strong>, đẩy đơn Pancake POS, tự nhường quyền khi nhân viên gõ phím.<br>• Vận hành <strong>16 Agent Hermes Kanban</strong> nội bộ & hỗ trợ kỹ thuật khóa <code>Vibecode Pro</code>.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-sky-500">KPI: Nhận diện bill CK & đồng bộ POS &ge;99% · Phản hồi &le;3 giây.</div>
+        </div>
+
+        <!-- 10. Nguyễn Văn Quang -->
+        <div data-dept="tech" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-sky-500/20 text-sky-500">FULL-STACK DEVELOPER</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">xuongmedia.com</span>
+          </div>
+          <h3 class="font-bold text-base">10. Nguyễn Văn Quang</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• Vận hành & nâng cấp <strong>Xưởng Media (xuongmedia.com)</strong> (36+ Apps, 59+ Models, nạp xu QR VNĐ <code>199K/399K/990K</code>, tự hoàn xu khi lỗi).<br>• Phát triển <strong>OPA CRM (crm.overpowers.agency)</strong>, <strong>opa.business</strong> và hệ thống voucher khấu trừ 100% tiền nạp xu khi nâng cấp khóa học.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-sky-500">KPI: Uptime hệ thống &ge;99.9% · Nạp xu QR tự động &le;10 giây.</div>
+        </div>
+
+        <!-- 11 & 12. Nguyễn Thiên Duy & Phạm Hoàng Hải -->
+        <div data-dept="tech" class="team-card bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="px-2 py-0.5 rounded text-xs font-bold bg-sky-500/20 text-sky-500">R&D & AUTOMATION</span>
+            <span class="text-xs font-mono text-[var(--muted-foreground)]">2 Nhân sự R&D</span>
+          </div>
+          <h3 class="font-bold text-base">11 & 12. Nguyễn Thiên Duy & Phạm Hoàng Hải</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">• R&D các model mới (Kling 3.0, Seedance 2.0, Veo 3.1...) đóng gói thành <strong>Workflow kéo thả chạy Batch</strong> trên <code>xuongmedia.com</code> & mở rộng kho 15.000+ Prompts.<br>• Vận hành <strong>Creative Intelligence OS</strong>, <strong>OPA Data API</strong> (15 thị trường TikTok Shop) & kịch bản Auto-Inbox 3 kênh.</p>
+          <div class="pt-2 border-t border-[var(--border)] text-xs font-semibold text-sky-500">KPI: 5–8 Workflow Batch mới/tuần · 100% Auto-Inbox không sót comment.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 5: MÔ PHỎNG DOANH THU & LỘ TRÌNH 90 NGÀY ==================== -->
+  <section id="tab-roadmap" class="tab-pane hidden space-y-6">
+    <!-- Interactive 4-Tier Revenue Simulator -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-4">
+        <div>
+          <span class="text-xs font-semibold uppercase text-emerald-500">Interactive Financial Model</span>
+          <h3 class="text-lg font-bold">Trình Mô Phỏng Doanh Thu 4 Tầng Của Doanh Nghiệp OPA</h3>
+          <p class="text-xs text-[var(--muted-foreground)]">Bấm chọn Kịch bản Tháng 1, Tháng 2, Tháng 3 hoặc tự kéo thanh trượt để tính toán doanh thu toàn công ty.</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="setRevScenario(150, 6, 10, 2)" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--secondary)] border border-[var(--border)]">Tháng 1 (~253.8M)</button>
+          <button onclick="setRevScenario(400, 15, 20, 4)" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[var(--secondary)] border border-[var(--border)]">Tháng 2 (~570.2M)</button>
+          <button onclick="setRevScenario(800, 28, 32, 6)" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-500 border border-emerald-500/30">Tháng 3 (~994.4M)</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-7 space-y-4 bg-[var(--secondary)] border border-[var(--border)] rounded-xl p-4">
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>1. Lượt nạp xu Xưởng Media (TB ~400.000đ/lượt từ gói 199K/399K/990K):</span>
+              <span id="sim-xm-label" class="font-mono text-sky-500 font-bold">800 lượt = 320.0M</span>
+            </div>
+            <input type="range" id="sim-xm" min="50" max="1500" step="25" value="800" oninput="calcRev()" class="w-full accent-sky-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>2. Doanh nghiệp dùng OPA Agent + CRM + Fanpage Retainer (TB ~7.5M/tháng):</span>
+              <span id="sim-b2b-label" class="font-mono text-amber-500 font-bold">28 DN = 210.0M</span>
+            </div>
+            <input type="range" id="sim-b2b" min="2" max="60" step="1" value="28" oninput="calcRev()" class="w-full accent-amber-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>3. Học viên OPA AI Labs: Track 1 & Track 2 (8.888.888đ/HV):</span>
+              <span id="sim-labs-label" class="font-mono text-emerald-500 font-bold">32 HV = 284.4M</span>
+            </div>
+            <input type="range" id="sim-labs" min="5" max="80" step="1" value="32" oninput="calcRev()" class="w-full accent-emerald-500" />
+          </div>
+          <div>
+            <div class="flex justify-between text-xs font-semibold mb-1">
+              <span>4. Gói B2B Coaching Doanh Nghiệp (30.000.000đ / 3 thành viên):</span>
+              <span id="sim-coach-label" class="font-mono text-rose-500 font-bold">6 DN = 180.0M</span>
+            </div>
+            <input type="range" id="sim-coach" min="1" max="15" step="1" value="6" oninput="calcRev()" class="w-full accent-rose-500" />
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-[var(--secondary)] border-2 border-emerald-500/40 rounded-xl p-5 space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-emerald-500">TỔNG DOANH THU MỤC TIÊU HÀNG THÁNG</div>
+          <div id="sim-total" class="text-2xl md:text-3xl font-extrabold text-emerald-500">994.444.416 VNĐ</div>
+          <div class="space-y-1.5 pt-2 border-t border-[var(--border)] text-xs">
+            <div class="flex justify-between"><span>• Tỷ trọng SaaS & Retainer (MRR):</span><span id="sim-mrr-pct" class="font-bold text-sky-500">53.3% (530.0M)</span></div>
+            <div class="flex justify-between"><span>• Tỷ trọng Đào tạo & Coaching B2B:</span><span id="sim-edu-pct" class="font-bold text-rose-500">46.7% (464.4M)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7-Day Quick-Win Sprint Checklist -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5">
+      <h3 class="text-base font-bold mb-1">Checklist Khai Pháo 7 Ngày Đầu Tiên Tại Đại Bản Doanh Ocean Park 2</h3>
+      <p class="text-xs text-[var(--muted-foreground)] mb-4">Tích chọn từng hạng mục khi các bộ phận hoàn thành (trạng thái được lưu tự động):</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] cursor-pointer">
+          <input type="checkbox" class="mt-0.5 accent-emerald-500 w-4 h-4" onchange="saveChecks()" id="chk-1" />
+          <span><strong>[Khối Công Nghệ — Nguyễn Văn Quang & Phan Quang Điện]:</strong> Kiểm tra cổng nạp xu QR VNĐ (<code>199K/399K/990K</code>) trên <code>xuongmedia.com</code>, tạo mã Voucher Khấu trừ 100% lên khóa <code>8.88M</code> và bật <code>OPA Agent</code> bắt 6 từ khóa (<code>AUDIT, AGENT, CRM, MEDIA, KIT, XUONG</code>).</span>
+        </label>
+        <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] cursor-pointer">
+          <input type="checkbox" class="mt-0.5 accent-emerald-500 w-4 h-4" onchange="saveChecks()" id="chk-2" />
+          <span><strong>[Khối AI Audit & B2B — Bùi Anh Phương & Trần Quang Huy]:</strong> Đóng gói biểu mẫu chuẩn <em>"Báo Cáo AI Audit 1 Trang A4"</em> (đo 3 chỉ số lọt khách thật) và mời 20–30 chủ DN ấm đầu tiên từ BNI FIPO & FB <code>VM DaBest</code>.</span>
+        </label>
+        <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] cursor-pointer">
+          <input type="checkbox" class="mt-0.5 accent-emerald-500 w-4 h-4" onchange="saveChecks()" id="chk-3" />
+          <span><strong>[Khối Marketing & Kênh CEO — Trương Ngọc Ánh & Nguyễn Văn Minh]:</strong> Dừng hẳn bài API cũ trên Fanpage <code>Overpowers Agency (311K)</code>, cập nhật Bài Ghim 4 Tầng + Đăng bài mở màn có CTA nhận 10 suất <code>AI Audit 5 Ngày</code> trên FB <code>VM DaBest (27K)</code>.</span>
+        </label>
+        <label class="flex items-start gap-3 p-3.5 rounded-xl bg-[var(--secondary)] border border-[var(--border)] cursor-pointer">
+          <input type="checkbox" class="mt-0.5 accent-emerald-500 w-4 h-4" onchange="saveChecks()" id="chk-4" />
+          <span><strong>[Khối Sáng Tạo & Media — CD Võ Viết Thành, Phạm Đức Cường & 2 Học việc]:</strong> Xuất bản 3 Video Ghim + 4 Video Tuần 1 (quay màn hình <code>xuongmedia.com</code> & <code>FilmCraft 18 tracks</code>) + Bấm máy Tập 1 Vlog hậu trường Ocean Park 2.</span>
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 6: ĐỐI CHIẾU MAGENTX VS OPA ==================== -->
+  <section id="tab-vs" class="tab-pane hidden space-y-6">
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 overflow-x-auto">
+      <h3 class="text-base md:text-lg font-bold mb-3">Bảng Đối Chiếu Chiến Lược Trực Diện: MagentX vs Doanh Nghiệp OPA</h3>
+      <table class="w-full text-left border-collapse text-xs">
+        <thead>
+          <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)]">
+            <th class="py-3 px-3">Tiêu chí</th>
+            <th class="py-3 px-3">MagentX (CÔNG TY TNHH MAGENTX · MST: 0319629360)</th>
+            <th class="py-3 px-3">Doanh Nghiệp OPA (CÔNG TY TNHH OVERPOWERS AGENCY · MST: 0111435207)</th>
+            <th class="py-3 px-3">Đòn Phản Công Thắng Thế Của OPA</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--border)]">
+          <tr>
+            <td class="py-3 px-3 font-bold">1. Định vị Cốt lõi</td>
+            <td class="py-3 px-3">Học viện làm phim AI & Studio thị giác (<em>"Where AI meets Creative mind"</em>).</td>
+            <td class="py-3 px-3 font-semibold text-sky-500">Hệ sinh thái Thực thi Doanh thu & Media Có Chủ Đích bằng AI cho SME (<em>"Đủ Video Bán Hàng – Không Bỏ Sót Khách – Đội Ngũ Tự Vận Hành"</em>).</td>
+            <td class="py-3 px-3 text-emerald-500 font-semibold">Không đua làm phim CGI viễn tưởng tốn kém; thống lĩnh ngách <strong>Video Ra Đơn + Không Bỏ Sót Khách Inbox</strong>.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3 font-bold">2. Nền tảng Sở hữu</td>
+            <td class="py-3 px-3">Phụ thuộc công cụ bên thứ 3 (Higgsfield, Midjourney, Kling, Seedance rời rạc).</td>
+            <td class="py-3 px-3 font-semibold text-sky-500">Sở hữu 5 SaaS riêng: <code>Xưởng Media</code> (59+ models, QR VNĐ), <code>OPA Agent</code>, <code>OPA CRM</code>, <code>Creative OS</code>, <code>Data API</code> + <code>FilmCraft</code>.</td>
+            <td class="py-3 px-3 text-emerald-500 font-semibold">Khách hàng & học viên nạp xu và dùng hạ tầng của OPA hàng tháng (tạo dòng tiền MRR bền vững).</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3 font-bold">3. Thang Giá Đào tạo</td>
+            <td class="py-3 px-3">Level 1 (<code>599K</code>) &rarr; Level 2 (<code>4.9M</code>) &rarr; Combo 1+2+3 (<code>11.9M</code> rẻ hơn lẻ L3 <code>12.9M</code>) &rarr; Level 4 (<code>25.9M</code>) + E-learning (<code>3.5M/năm</code>).</td>
+            <td class="py-3 px-3 font-semibold text-sky-500">Nạp xu <code>Xưởng Media (199K–990K)</code> &rarr; <code>Track 1: Media Power-Up (8.88M)</code> & <code>Track 2: Vibecode Pro (8.88M)</code> &rarr; <code>Coaching DN (30M/3 người)</code>.</td>
+            <td class="py-3 px-3 text-emerald-500 font-semibold">Áp dụng khấu trừ 100% phí nạp xu <code>Xưởng Media</code> vào khóa <code>8.88M</code> và dùng gói <code>30M/3 người</code> làm giá Chim mồi B2B.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3 font-bold">4. Phễu Dịch vụ B2B</td>
+            <td class="py-3 px-3">AI Bootcamp miễn phí/donate (thu 17tr + chốt 3 HĐ năm); Sản xuất Ads (<code>800K–4M</code>), Short CGI (<code>8M–12M</code>), TVC (<code>30M–50M+</code>).</td>
+            <td class="py-3 px-3 font-semibold text-sky-500">Mồi câu <strong>AI Audit 5 Ngày</strong> (đo 3 chỉ số lọt khách + Báo cáo 1 trang A4) &rarr; Triển khai <code>OPA Agent + CRM</code> & Gói Fanpage (<code>4M–9M/tháng</code>).</td>
+            <td class="py-3 px-3 text-emerald-500 font-semibold">Chứng minh bằng con số tiền rò rỉ thật trên Fanpage của khách trong 5 ngày để chốt hợp đồng tự động hóa.</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-3 font-bold">5. Ma trận Kênh</td>
+            <td class="py-3 px-3">5 kênh TikTok vệ tinh: <code>@thegioicuaminh2026</code>, <code>@iamhhieu</code>, <code>@ddoquynhtram.magentx</code>, <code>@aynineee</code>, <code>@__dviet</code>.</td>
+            <td class="py-3 px-3 font-semibold text-sky-500">Tam Giác 338K+ Followers: <code>Overpowers Agency (311K)</code> &times; <code>VM DaBest (27K)</code> &times; <code>Thành OPA Skool (@thanhdungai)</code> + Vlog Ocean Park 2.</td>
+            <td class="py-3 px-3 text-emerald-500 font-semibold">Tận dụng ngay tệp 338K+ Followers sẵn có kết hợp khen chéo nội bộ giữa CEO, CD Media và Kỹ sư AI Audit.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('tab-active');
+        btn.classList.add('bg-[var(--secondary)]', 'text-[var(--foreground)]');
+      });
+      const activeBtn = document.getElementById('btn-' + tabId);
+      activeBtn.classList.add('tab-active');
+      activeBtn.classList.remove('bg-[var(--secondary)]', 'text-[var(--foreground)]');
+    }
+
+    function formatVND(num) {
+      return Math.round(num).toLocaleString('vi-VN') + ' VNĐ';
+    }
+
+    function calcAudit() {
+      const unanswered = parseInt(document.getElementById('audit-unanswered').value, 10);
+      const delay = parseInt(document.getElementById('audit-delay').value, 10);
+      const nofollow = parseInt(document.getElementById('audit-nofollow').value, 10);
+      const aov = parseInt(document.getElementById('audit-aov').value, 10);
+
+      document.getElementById('audit-unanswered-val').innerText = unanswered + ' tin';
+      document.getElementById('audit-delay-val').innerText = delay + ' phút';
+      document.getElementById('audit-nofollow-val').innerText = nofollow + ' khách';
+      document.getElementById('audit-aov-val').innerText = aov.toLocaleString('vi-VN') + 'đ';
+
+      const delayFactor = Math.min(1.5, 0.5 + (delay / 60) * 0.5);
+      const lostOrders = Math.round((unanswered * 0.12 * delayFactor) + (nofollow * 0.15));
+      const lostRev = lostOrders * aov;
+
+      document.getElementById('audit-lost-orders').innerText = lostOrders + ' đơn/tháng';
+      document.getElementById('audit-lost-rev').innerText = formatVND(lostRev) + ' / tháng';
+      document.getElementById('audit-lost-year').innerText = 'Tương đương mất trắng ~' + formatVND(lostRev * 12) + ' / năm nếu không bịt lỗ hổng.';
+    }
+
+    function showKeyword(kw) {
+      const box = document.getElementById('kw-preview');
+      const data = {
+        AUDIT: {
+          title: 'Từ khóa kích hoạt: [AUDIT] (Mồi câu B2B Chiến lược)',
+          c1: '"Trợ lý AI của OPA đã gửi biểu mẫu đăng ký gói Chẩn đoán AI Audit 5 Ngày (đo 3 chỉ số lọt khách thật trên Fanpage) vào Inbox cho anh/chị rồi ạ! Anh/chị kiểm tra tin nhắn nhé ⚡"',
+          c2: 'Gửi ảnh mẫu Báo cáo AI Audit 1 Trang A4 + Hỏi đường link Fanpage & SĐT Zalo của Chủ doanh nghiệp.',
+          c3: 'Đẩy thẳng vào Giỏ B2B Audit -> Gắn thẻ giao cho Bùi Anh Phương (đo số liệu) & Trần Quang Huy (lên lịch Zoom Ngày 5).'
+        },
+        AGENT: {
+          title: 'Từ khóa kích hoạt: [AGENT] (Giải pháp Trực Page 24/7 & Check Bill CK)',
+          c1: '"Hệ thống đã gửi Video Demo OPA Agent tự động kiểm tra bill chuyển khoản, đẩy đơn Pancake POS và nhường nhân viên thật vào Inbox của anh/chị rồi ạ! 🤖"',
+          c2: 'Gửi clip 45s quay màn hình thật chat.overpowers.agency + Hỏi ngành hàng và lượng tin nhắn trung bình/ngày của shop.',
+          c3: 'Đẩy vào Giỏ B2B Agent/CRM -> Báo thông báo cho Phan Quang Điện, Bùi Anh Phương & Trần Quang Huy.'
+        },
+        KIT: {
+          title: 'Từ khóa kích hoạt: [KIT] / [PROMPT] (Tài nguyên mở Media Super Powers & Nano Power)',
+          c1: '"Mình đã gửi bộ 150 Kỹ thuật Góc máy, Ánh sáng (Media Super Powers) & 83 Nano Power Prompts vào tin nhắn cho bạn rồi nha! Kiểm tra Inbox ngay nhé 🎬"',
+          c2: 'Trao link opa.business/media-super-powers & opa.business/nano-power + Tặng mã trải nghiệm Xưởng Media (xuongmedia.com).',
+          c3: 'Đẩy vào Giỏ Prosumer/Creator -> Mời vào cộng đồng Zero To AI (Skool) và buổi Live Critique tối Thứ Sáu của CD Võ Viết Thành.'
+        },
+        XUONG: {
+          title: 'Từ khóa kích hoạt: [XUONG] (Trải nghiệm 36+ AI Apps & 59+ Models trên xuongmedia.com)',
+          c1: '"Link truy cập Xưởng Media (36+ Apps, 59+ Models, nạp xu QR VNĐ chỉ từ 199K) kèm ưu đãi khấu trừ 100% học phí đã nằm trong Inbox của bạn rồi đấy! 🔥"',
+          c2: 'Gửi link xuongmedia.com + Video hướng dẫn chạy Workflow Batch nhân bản 10 video trong 15 phút.',
+          c3: 'Theo dõi tài khoản nạp xu trên OPA CRM -> Tự động gửi mã khấu trừ 100% lên Track 1: Media Power-Up (8.888.888đ).'
+        },
+        LABS: {
+          title: 'Từ khóa kích hoạt: [LABS] / [COACHING] (Đào tạo OPA AI Labs 8.88M & Coaching DN 30M)',
+          c1: '"Team đào tạo OPA AI Labs đã gửi Đề cương chi tiết Track 1 (Media Power-Up), Track 2 (Vibecode Pro) và Gói Coaching Doanh Nghiệp 3 người vào Inbox cho bạn rồi nhé! 🚀"',
+          c2: 'Gửi brochure opa.business/khoa-hoc-ai + Hỏi bạn muốn đăng ký cho cá nhân (8.88M) hay cử team 3 người của doanh nghiệp đi học kèm 1-1 với CEO Minh (30M).',
+          c3: 'Đẩy vào Giỏ Tuyển Sinh OPA AI Labs -> Giao cho CMO Trương Ngọc Ánh, CD Võ Viết Thành & CEO Nguyễn Văn Minh.'
+        }
+      };
+      const item = data[kw];
+      box.innerHTML = `
+        <div class="font-bold text-sky-500">${item.title}</div>
+        <div><strong>1. Trả lời Comment công khai (sau 3 giây):</strong> <em>${item.c1}</em></div>
+        <div><strong>2. Tin nhắn Inbox tự động (sau 5 giây):</strong> ${item.c2}</div>
+        <div><strong>3. Chia giỏ tự động trên OPA CRM:</strong> ${item.c3}</div>
+      `;
+    }
+
+    function filterTeam(dept) {
+      document.querySelectorAll('.team-card').forEach(card => {
+        if (dept === 'all' || card.getAttribute('data-dept') === dept) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    function calcRev() {
+      const xm = parseInt(document.getElementById('sim-xm').value, 10);
+      const b2b = parseInt(document.getElementById('sim-b2b').value, 10);
+      const labs = parseInt(document.getElementById('sim-labs').value, 10);
+      const coach = parseInt(document.getElementById('sim-coach').value, 10);
+
+      const revXm = xm * 400000;
+      const revB2b = b2b * 7500000;
+      const revLabs = labs * 8888888;
+      const revCoach = coach * 30000000;
+      const total = revXm + revB2b + revLabs + revCoach;
+
+      document.getElementById('sim-xm-label').innerText = `${xm} lượt = ${(revXm / 1e6).toFixed(1)}M`;
+      document.getElementById('sim-b2b-label').innerText = `${b2b} DN = ${(revB2b / 1e6).toFixed(1)}M`;
+      document.getElementById('sim-labs-label').innerText = `${labs} HV = ${(revLabs / 1e6).toFixed(1)}M`;
+      document.getElementById('sim-coach-label').innerText = `${coach} DN = ${(revCoach / 1e6).toFixed(1)}M`;
+
+      document.getElementById('sim-total').innerText = formatVND(total);
+      const mrr = revXm + revB2b;
+      const edu = revLabs + revCoach;
+      const mrrPct = ((mrr / total) * 100).toFixed(1);
+      const eduPct = ((edu / total) * 100).toFixed(1);
+      document.getElementById('sim-mrr-pct').innerText = `${mrrPct}% (${(mrr / 1e6).toFixed(1)}M)`;
+      document.getElementById('sim-edu-pct').innerText = `${eduPct}% (${(edu / 1e6).toFixed(1)}M)`;
+    }
+
+    function setRevScenario(xm, b2b, labs, coach) {
+      document.getElementById('sim-xm').value = xm;
+      document.getElementById('sim-b2b').value = b2b;
+      document.getElementById('sim-labs').value = labs;
+      document.getElementById('sim-coach').value = coach;
+      calcRev();
+    }
+
+    function saveChecks() {
+      ['chk-1', 'chk-2', 'chk-3', 'chk-4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) localStorage.setItem('opa_' + id, el.checked ? '1' : '0');
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      ['chk-1', 'chk-2', 'chk-3', 'chk-4'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && localStorage.getItem('opa_' + id) === '1') {
+          el.checked = true;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
